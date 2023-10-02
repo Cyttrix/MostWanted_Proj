@@ -40,7 +40,7 @@ function searchPeopleDataSet(people) {
 			break;
 		case 'trait':
 			//! TODO
-			// results = searchByTraits(people);
+			results = searchByTraits(people);
 			break;
 		default:
 			return searchPeopleDataSet(people);
@@ -70,6 +70,39 @@ function searchByName(people) {
 	);
 	return fullNameSearchResults;
 }
+
+
+
+function searchByTraits(people) {
+	const traitToSearchForString = validatedPrompt(
+		'Please enter in what type of trait search you would like to perform.',
+		['height', 'weight', 'eyecolor'],
+	);
+	let results = [];
+	switch (traitToSearchForString) {
+		case 'height':
+			results = searchByHeight(people);
+			break;
+		case 'weight':
+			//filter logic
+			break;
+		case 'eyecolor':
+			//filter logic
+			break;
+		default:
+			//logic for validation
+	}
+
+	function searchByHeight(people) {
+		const heightToSearchForString = prompt('please enter the height of the person you are searching for:')
+		const heightToSearchInt = parseInt(heightToSearchForString);
+		const heightFilterResults = people.filter((person) => person.height === heightToSearchInt);
+		alert(heightFilterResults);
+		return heightFilterResults
+	}
+
+}
+
 
 function mainMenu(person, people) {
 	const mainMenuUserActionChoice = validatedPrompt(
