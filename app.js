@@ -24,7 +24,7 @@ function runSearchAndMenu(people) {
 	}
 }
 
-//Search People Data Set Scafold
+//Search People Data Set Function
 
 function searchPeopleDataSet(people) {
 	const searchTypeChoice = validatedPrompt(
@@ -50,6 +50,8 @@ function searchPeopleDataSet(people) {
 	return results;
 }
 
+//Search People Data Set Scafold
+
 function searchById(people) {
 	const idToSearchForString = prompt('Please enter the id of the person you are searching for.');
 	const idToSearchForInt = parseInt(idToSearchForString);
@@ -72,7 +74,7 @@ function searchByName(people) {
 	return fullNameSearchResults;
 }
 
-//Search By Traits Scafold
+//Search By Traits Function
 
 function searchByTraits(people) {
 	const traitToSearchForString = validatedPrompt(
@@ -95,9 +97,9 @@ function searchByTraits(people) {
 	}
 	return results;
 
-	
-
 }
+
+//Search By Traits Scafold
 
 function searchByHeight(people) {
 	const heightToSearchForString = prompt('please enter the height of the person you are searching for:');
@@ -120,6 +122,8 @@ function searchByEyeColor(people) {
 }
 
 
+//Main menu function for displaying more info about person(s) searched
+
 function mainMenu(person, people) {
 	const mainMenuUserActionChoice = validatedPrompt(
 		`Person: ${person.firstName} ${person.lastName}\n\nDo you want to know their full information, family, or descendants?`,
@@ -128,8 +132,7 @@ function mainMenu(person, people) {
 
 	switch (mainMenuUserActionChoice) {
 		case 'info':
-			//! TODO
-			// displayPersonInfo(person);
+			displayPersonInfo(person);
 			break;
 		case 'family':
 			//! TODO
@@ -148,6 +151,22 @@ function mainMenu(person, people) {
 	}
 
 	return mainMenu(person, people);
+}
+
+function displayPersonInfo(person) {
+	alert(
+	`
+	Id: ${person.id}
+	First Name: ${person.firstName}
+	Last Name: ${person.lastName}
+	Gender: ${person.gender}
+	Date of Birth: ${person.dob}
+	Height: ${person.height}
+	Weight: ${person.weight}
+	Eye Color: ${person.eyeColor}
+	Occupation: ${person.occupation}`);
+	
+
 }
 
 function displayPeople(displayTitle, peopleToDisplay) {
