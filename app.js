@@ -1,7 +1,7 @@
 // PRO TIP: To quickly navigate to a function, right click on its name and select "Go to Definition"
 
 function app(people) {
-	debugger;
+	
 	displayWelcome();
 	runSearchAndMenu(people);
 	return exitOrRestart(people);
@@ -132,12 +132,11 @@ function mainMenu(person, people) {
 
 	switch (mainMenuUserActionChoice) {
 		case 'info':
-			displayPersonInfo(person);
+			displayPersonInfo(person, people);
 			break;
 		case 'family':
-			//! TODO
-			// let personFamily = findPersonFamily(person, people);
-			// displayPeople('Family', personFamily);
+			let personFamily = findPersonFamily(person, people);
+			displayPeople('Family', personFamily);
 			break;
 		case 'descendants':
 			//! TODO
@@ -153,7 +152,18 @@ function mainMenu(person, people) {
 	return mainMenu(person, people);
 }
 
-function displayPersonInfo(person) {
+//Scafolding for mainMenu function
+
+function displayPersonInfo(person, people) {
+	let findParents = people.filter(maybeParent => person.parents.includes(maybeParent.id));
+	if (findParents.length === 0){
+		parents = "none";
+	} else {
+		parents = findParents.map(parent => parent.firstName + " " + parent.lastName).join(", ");
+	}
+
+	
+
 	alert(
 	`
 	Id: ${person.id}
@@ -164,10 +174,12 @@ function displayPersonInfo(person) {
 	Height: ${person.height}
 	Weight: ${person.weight}
 	Eye Color: ${person.eyeColor}
-	Occupation: ${person.occupation}`);
-	
-
+	Occupation: ${person.occupation}
+	Parents: ${parents}`);
 }
+
+
+
 
 function displayPeople(displayTitle, peopleToDisplay) {
 	const formatedPeopleDisplayText = peopleToDisplay
