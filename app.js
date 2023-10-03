@@ -83,42 +83,40 @@ function searchByTraits(people) {
 	switch (traitToSearchForString) {
 		case 'height':
 			results = searchByHeight(people);
-			alert(results);
 			break;
 		case 'weight':
 			results = searchByWeight(people);
-			alert(results);
 			break;
 		case 'eyecolor':
 			results = searchByEyeColor(people);
-			alert(results);
 			break;
 		default:
 			return searchByTraits(people);
 	}
+	return results;
 
-	function searchByHeight(people) {
-		const heightToSearchForString = prompt('please enter the height of the person you are searching for:');
-		const heightToSearchInt = parseInt(heightToSearchForString);
-		const heightFilterResults = people.filter((person) => person.height === heightToSearchInt);
-		return heightFilterResults;
-	}
+	
 
-	function searchByWeight(people) {
-		const weightToSearchForString = prompt('please enter the weight of the person you are searching for:');
-		const weightToSearchForInt = parseInt(weightToSearchForString);
-		const weightFilterResults = people.filter((person) => person.weight === weightToSearchForInt);
-		const names = weightFilterResults.map((person) => person.name);
-		const result = names.join(', ');
-		return result;
-	}
+}
 
-	function searchByEyeColor(people) {
-		const eyeColorToSearchFor = prompt('please enter the eyecolor of the person you are searching for:');
-		const eyeColorFilterResults = people.filter((person) => person.eyeColor === eyeColorToSearchFor);
-		return eyeColorFilterResults;
-	}
+function searchByHeight(people) {
+	const heightToSearchForString = prompt('please enter the height of the person you are searching for:');
+	const heightToSearchInt = parseInt(heightToSearchForString);
+	const heightFilterResults = people.filter((person) => person.height === heightToSearchInt);
+	return heightFilterResults;
+}
 
+function searchByWeight(people) {
+	const weightToSearchForString = prompt('please enter the weight of the person you are searching for:');
+	const weightToSearchForInt = parseInt(weightToSearchForString);
+	const weightFilterResults = people.filter((person) => person.weight === weightToSearchForInt);
+	return weightFilterResults;
+}
+
+function searchByEyeColor(people) {
+	const eyeColorToSearchFor = prompt('please enter the eyecolor of the person you are searching for:');
+	const eyeColorFilterResults = people.filter((person) => person.eyeColor === eyeColorToSearchFor);
+	return eyeColorFilterResults;
 }
 
 
