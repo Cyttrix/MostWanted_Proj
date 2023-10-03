@@ -163,6 +163,14 @@ function displayPersonInfo(person, people) {
 	}
 
 	
+	let findSpouse = people.find((maybeSpouse) => maybeSpouse.id === person.currentSpouse);
+
+	if(findSpouse === null) {
+		spouse = "none";
+	} else {
+		spouse = findSpouse.firstName + " " + findSpouse.lastName;
+	}
+
 
 	alert(
 	`
@@ -175,7 +183,8 @@ function displayPersonInfo(person, people) {
 	Weight: ${person.weight}
 	Eye Color: ${person.eyeColor}
 	Occupation: ${person.occupation}
-	Parents: ${parents}`);
+	Parents: ${parents}
+	Spouse: ${spouse}`);
 }
 
 
