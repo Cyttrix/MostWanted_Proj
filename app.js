@@ -136,7 +136,9 @@ function mainMenu(person, people) {
 			break;
 		case 'family':
 			let personFamily = findPersonFamily(person, people);
-			displayPeople('Family', personFamily);
+			alert(`
+			Family: 
+			${personFamily}`);
 			break;
 		case 'descendants':
 			//! TODO
@@ -155,21 +157,23 @@ function mainMenu(person, people) {
 //Scafolding for mainMenu function
 
 function displayPersonInfo(person, people) {
-	let findParents = people.filter(maybeParent => person.parents.includes(maybeParent.id));
-	if (findParents.length === 0){
-		parents = "none";
-	} else {
-		parents = findParents.map(parent => parent.firstName + " " + parent.lastName).join(", ");
-	}
 
-	
-	let findSpouse = people.find((maybeSpouse) => maybeSpouse.id === person.currentSpouse);
 
-	if(findSpouse === null) {
-		spouse = "none";
-	} else {
-		spouse = findSpouse.firstName + " " + findSpouse.lastName;
-	}
+let findParents = people.filter(maybeParent => person.parents.includes(maybeParent.id));
+if (findParents.length === 0){
+	parents = "none";
+} else {
+	parents = "Parents: " + findParents.map(parent => parent.firstName + " " + parent.lastName).join(", ");
+}
+
+
+let findSpouse = people.find((maybeSpouse) => maybeSpouse.id === person.currentSpouse);
+
+if(findSpouse === null) {
+	spouse = "none";
+} else {
+	spouse = "Spouse: " + findSpouse.firstName + " " + findSpouse.lastName;
+}
 
 
 	alert(
@@ -183,10 +187,32 @@ function displayPersonInfo(person, people) {
 	Weight: ${person.weight}
 	Eye Color: ${person.eyeColor}
 	Occupation: ${person.occupation}
-	Parents: ${parents}
-	Spouse: ${spouse}`);
+	${spouse}
+	${parents}`);
 }
 
+
+function findPersonFamily(person, people) {
+	
+let findParents = people.filter(maybeParent => person.parents.includes(maybeParent.id));
+if (findParents.length === 0){
+	parents = "none";
+} else {
+	parents = "Parents: " + findParents.map(parent => parent.firstName + " " + parent.lastName).join(", ");
+}
+
+
+let findSpouse = people.find((maybeSpouse) => maybeSpouse.id === person.currentSpouse);
+
+if(findSpouse === null) {
+	spouse = "none";
+} else {
+	spouse = "Spouse: " + findSpouse.firstName + " " + findSpouse.lastName + " ";
+}
+
+return spouse + parents;
+
+}
 
 
 
